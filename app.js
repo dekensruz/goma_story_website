@@ -1,5 +1,5 @@
 // Chargement de la carte interactive et initialisation du carousel
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Configuration du carousel
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-slide');
@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');
     const dotsContainer = document.querySelector('.carousel-dots');
+    let autoSlideInterval;
 
     // Création des points de navigation
     slides.forEach((_, index) => {
@@ -16,24 +17,31 @@ document.addEventListener('DOMContentLoaded', function() {
         dotsContainer.appendChild(dot);
     });
 
-    // Configuration du carousel
-    function updateCarousel() {
-        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-        document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-        });
-    }
+    // Fonction pour mettre à jour le carousel
+// Activer l'affichage des légendes pour la slide active
+function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.carousel-slide').forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+    });
+    document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
 
+    // Fonction pour aller à une slide spécifique
     function goToSlide(index) {
         currentSlide = index;
         updateCarousel();
     }
 
+    // Fonction pour passer à la slide suivante
     function nextSlide() {
         currentSlide = (currentSlide + 1) % slides.length;
         updateCarousel();
     }
 
+    // Fonction pour revenir à la slide précédente
     function prevSlide() {
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         updateCarousel();
@@ -44,7 +52,21 @@ document.addEventListener('DOMContentLoaded', function() {
     nextButton.addEventListener('click', nextSlide);
 
     // Défilement automatique
-    setInterval(nextSlide, 5000);
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    // Démarrer le défilement automatique
+    startAutoSlide();
+
+    // Arrêter le défilement automatique au survol
+    const carouselContainer = document.querySelector('.carousel-container');
+    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+    carouselContainer.addEventListener('mouseleave', startAutoSlide);
 
     // Initialisation de la carte Leaflet
     const map = L.map('map').setView([-1.6777, 29.2389], 12); // Coordonnées de Goma
@@ -55,9 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }).addTo(map);
 
     // Exemple de marqueur pour Goma
-    L.marker([-1.6777, 29.2389])
-        .bindPopup('Goma, RDC')
-        .addTo(map);
+    L.marker([-1.6777, 29.2389], {
+        icon: L.icon({
+            iconUrl: 'assets/images/marker-icon.png', // Remplacez par votre icône de marqueur
+            iconSize: [38, 38],
+            iconAnchor: [19, 38],
+            popupAnchor: [0, -38]
+        })
+    }).bindPopup('Goma, RDC').addTo(map);
 
     // Données historiques de Goma
     const histoireGoma = [
@@ -73,13 +100,23 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             annee: '2002',
-            titre: 'Éruption du Nyiragongo',
+            titre: 'Première éruption volcanique du Nyiragongo',
             description: 'La ville démontre sa résilience face à une catastrophe naturelle majeure.'
         },
         {
-            annee: '2024',
+            annee: '2012',
+            titre: 'Première prise de la ville par les M23',
+            description: 'La ville a été prise par les rebelles du M23 mais ils ont été ensuite chassés par les forces armées du pays, les FARDC.'
+        },
+        {
+            annee: '2021',
+            titre: 'Deuxième éruption volcanique du Nyiragongo',
+            description: 'Goma a encore fait face à une deuxième éruption volcanique du Nyiragongo.'
+        },
+        {
+            annee: '2025',
             titre: 'Goma Aujourd\'hui',
-            description: 'Une ville dynamique, centre économique et culturel important de la région.'
+            description: 'Une ville dynamique, centre économique et culturel important de la région, mais contrôlée par les rebelles du M23.'
         }
     ];
 
@@ -103,17 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             titre: 'Art et Artisanat',
             description: 'Découvrez les talents locaux et l\'artisanat traditionnel de Goma.',
-            image: 'image4.jpeg'
-        },
-        {
-            titre: 'Musique et Danse',
-            description: 'La richesse des expressions culturelles à travers la musique et la danse.',
-            image: 'image5.avif'
-        },
-        {
-            titre: 'Gastronomie Locale',
-            description: 'Savourez les délices culinaires uniques de la région.',
-            image: 'image6.jpg'
+            image: 'art_goma.jpg'
         }
     ];
 
@@ -123,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cultureElement = document.createElement('div');
         cultureElement.className = 'culture-item';
         cultureElement.innerHTML = `
-            <img src="assets/images/${item.image}" alt="${item.titre}">
+            <img src="assets/images/${item.image}" alt="${item.titre}" loading="lazy">
             <h3>${item.titre}</h3>
             <p>${item.description}</p>
         `;
@@ -135,17 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             nom: 'Volcan Nyiragongo',
             description: 'Un des volcans les plus actifs d\'Afrique, offrant une vue spectaculaire.',
-            image: 'image7.jpg'
-        },
-        {
-            nom: 'Lac Kivu',
-            description: 'Un joyau naturel aux eaux cristallines, bordant la ville.',
-            image: 'image1.webp'
-        },
-        {
-            nom: 'Parc des Virunga',
-            description: 'Une biodiversité exceptionnelle aux portes de la ville.',
-            image: 'image2.webp'
+            image: 'volcan.jpg'
         }
     ];
 
@@ -155,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const attractionElement = document.createElement('div');
         attractionElement.className = 'nature-item';
         attractionElement.innerHTML = `
-            <img src="assets/images/${attraction.image}" alt="${attraction.nom}">
+            <img src="assets/images/${attraction.image}" alt="${attraction.nom}" loading="lazy">
             <h3>${attraction.nom}</h3>
             <p>${attraction.description}</p>
         `;
@@ -244,12 +261,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Configuration de la galerie multimédia
     const images = [
-        'image1.webp',
-        'image2.webp',
-        'image3.jpg',
-        'image4.jpeg',
+        'goma_rdc.jpeg',
+        'guerre.jpeg',
+        'guerre1.jpg',
+        'guerre3.webp',
         'image5.avif',
-        'image6.jpg'
+        'deplace_guerre.jpg'
     ];
 
     const galleryContainer = document.querySelector('.gallery-container');
@@ -257,11 +274,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const imageElement = document.createElement('div');
         imageElement.className = 'gallery-item';
         imageElement.innerHTML = `
-            <img src="assets/images/${image}" alt="Image de la situation à Goma">
+            <img src="assets/images/${image}" alt="Image de la situation à Goma" loading="lazy">
             <div class="gallery-overlay">
                 <span>Voir plus</span>
             </div>
         `;
         galleryContainer.appendChild(imageElement);
     });
+
+    // Lightbox pour la galerie
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const imgSrc = item.querySelector('img').src;
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `<img src="${imgSrc}" alt="Gallery Image">`;
+            document.body.appendChild(lightbox);
+            lightbox.addEventListener('click', () => lightbox.remove());
+        });
+    });
 });
+
+// Animation des légendes du carrousel
+const carouselSlides = document.querySelectorAll('.carousel-slide');
+// Captions are now always visible by default
+// No need for mouseenter/mouseleave events
+/*
+carouselSlides.forEach(slide => {
+    // Event listeners removed to keep captions always visible
+});
+*/

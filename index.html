@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Goma Story - L'histoire d'une ville résiliente</title>
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header class="main-header">
         <div class="header-content">
@@ -16,11 +21,11 @@
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#histoire">Histoire</a></li>
-                    <li><a href="#culture">Culture</a></li>
-                    <li><a href="#nature">Nature</a></li>
-                    <li><a href="#actualites">Actualités</a></li>
-                    <li><a href="#communaute">Communauté</a></li>
+                    <li><a href="#histoire"><i class="fas fa-history"></i> Histoire</a></li>
+                    <li><a href="#culture"><i class="fas fa-theater-masks"></i> Culture</a></li>
+                    <li><a href="#nature"><i class="fas fa-leaf"></i> Nature</a></li>
+                    <li><a href="#actualites"><i class="fas fa-newspaper"></i> Actualités</a></li>
+                    <li><a href="#communaute"><i class="fas fa-users"></i> Communauté</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,97 +36,144 @@
             <div class="hero-content">
                 <h1>Goma Story</h1>
                 <p>Découvrez l'histoire riche et la résilience d'une ville extraordinaire au cœur de l'Afrique</p>
+                <a href="#hero_scroll" class="hero-button">Explorer notre histoire</a>
+            </div id="hero_scroll">
+            <div class="hero-scroll-indicator" ">
+                <span>Découvrir</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
         </section>
 
-        <section class="carousel-section">
+        <section class="carousel-section" id="carousel">
             <div class="carousel-container">
                 <div class="carousel-track">
                     <div class="carousel-slide">
-                        <img src="assets/images/image1.webp" alt="Situation à Goma 1">
+                        <img src="assets/images/aide_humanitaire.jpg" alt="Aide humanitaire à Goma">
                         <div class="carousel-caption">
-                            <h3>Aide Humanitaire en Action</h3>
-                            <p>Distribution de ressources essentielles aux communautés</p>
+                            <h3>Manques d'aides Humanitaire en Action</h3>
+                            <p>Les habitants de Goma vivent actuellement dans des conditions misérables</p>
                         </div>
                     </div>
                     <div class="carousel-slide">
-                        <img src="assets/images/image2.webp" alt="Situation à Goma 2">
+                        <img src="assets/images/deplace_de_guerre.jpg" alt="Déplacés de guerre à Goma">
                         <div class="carousel-caption">
-                            <h3>Soutien Médical</h3>
-                            <p>Services de santé mobiles pour les zones affectées</p>
+                            <h3>Manque de soutien aux Déplacés</h3>
+                            <p>Non-assistance aux personnes déplacées à cause de la guerre</p>
                         </div>
                     </div>
                     <div class="carousel-slide">
-                        <img src="assets/images/image3.jpg" alt="Situation à Goma 3">
+                        <img src="assets/images/education.jpg" alt="Éducation à Goma">
                         <div class="carousel-caption">
-                            <h3>Éducation Continue</h3>
+                            <h3>L'éducation Continue</h3>
                             <p>Maintenir l'accès à l'éducation malgré les défis</p>
                         </div>
                     </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/goma.jpg" alt="Éducation à Goma">
+                        <div class="carousel-caption">
+                            <h3>Fermeture de la plupart des banques suites à l'occupation de la ville par les M23</h3>
+                            <p>Trouver de quoi se nourrir et de quoi payer les études est devenu un défi majeur dans la
+                                ville</p>
+                        </div>
+                    </div>
+
+
+
                 </div>
-                <button class="carousel-button prev" aria-label="Image précédente">❮</button>
-                <button class="carousel-button next" aria-label="Image suivante">❯</button>
+                <button class="carousel-button prev" aria-label="Image précédente"><i
+                        class="fas fa-chevron-left"></i></button>
+                <button class="carousel-button next" aria-label="Image suivante"><i
+                        class="fas fa-chevron-right"></i></button>
                 <div class="carousel-dots"></div>
             </div>
         </section>
 
         <section id="actualites" class="section-actualites">
-        <section id="histoire" class="section-histoire">
-            <h2>L'Histoire de Goma</h2>
-            <div class="timeline-container">
-                <!-- La chronologie sera ajoutée dynamiquement -->
-            </div>
-        </section>
+            <section id="histoire" class="section-histoire">
+                <h2>L'Histoire de Goma</h2>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <h3>La ville de Goma</h3>
+                        <p>Une ville dynamique au cœur de l'Afrique des Grands Lacs</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Périodes de conflit</h3>
+                        <p>Les défis auxquels la ville a fait face</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Défis naturels</h3>
+                        <p>La résilience face aux éruptions volcaniques</p>
+                    </div>
+                </div>
+            </section>
 
-        <section id="culture" class="section-culture">
-            <h2>Héritage Culturel</h2>
-            <div class="culture-grid">
-                <!-- Le contenu culturel sera ajouté dynamiquement -->
-            </div>
-        </section>
+            <section id="culture" class="section-culture">
+                <h2>Héritage Culturel</h2>
+                <div class="culture-grid">
+                    <div class="culture-item">
+                        <img src="assets/images/dance.jpg" alt="Danse et Musique">
+                        <h3>Dance et Musique</h3>
+                        <p>La richesse des expressions culturelles à travers la musique et la danse.</p>
+                    </div>
+                    <div class="culture-item">
+                        <img src="assets/images/coltan.jpg" alt="Ressources minières">
+                        <h3>Ressources Naturelles</h3>
+                        <p>L'importance du coltan et du cobalt dans notre économie</p>
+                    </div>
+                </div>
+            </section>
 
-        <section id="nature" class="section-nature">
-            <h2>Beauté Naturelle</h2>
-            <div class="nature-showcase">
-                <!-- Les éléments naturels seront ajoutés dynamiquement -->
-            </div>
-        </section>
+            <section id="nature" class="section-nature">
+                <h2>Beauté Naturelle</h2>
+                <div class="nature-showcase">
+                    <div class="nature-item">
+                        <img src="assets/images/lac_kivu.jpg" alt="Lac Kivu">
+                        <h3>Lac Kivu</h3>
+                        <p>Le magnifique lac qui borde notre ville</p>
+                    </div>
+                    <div class="nature-item">
+                        <img src="assets/images/virunga_parc.jpg" alt="Parc des Virunga">
+                        <h3>Parc National de Virunga</h3>
+                        <p>Une biodiversité exceptionnelle aux portes de la ville</p>
+                    </div>
+                </div>
+            </section>
 
-        <section id="actualites" class="section-actualites">
-            <h2>Actualités de la Ville</h2>
-            <div class="news-container">
-                <!-- Les actualités seront ajoutées dynamiquement via JavaScript -->
-            </div>
-        </section>
+            <section id="actualites" class="section-actualites">
+                <h2>Actualités de la Ville</h2>
+                <div class="news-container">
+                    <!-- Les actualités seront ajoutées dynamiquement via JavaScript -->
+                </div>
+            </section>
 
-        <section id="carte" class="section-carte">
-            <h2>Découvrez Goma</h2>
-            <div id="map" class="map-container">
-                <!-- La carte interactive sera intégrée ici -->
-            </div>
-        </section>
+            <section id="carte" class="section-carte">
+                <h2>Découvrez Goma</h2>
+                <div id="map" class="map-container">
+                    <!-- La carte interactive sera intégrée ici -->
+                </div>
+            </section>
 
-        <section id="temoignages" class="section-temoignages">
-            <h2>Voix de la Communauté</h2>
-            <div class="testimonials-container">
-                <!-- Les témoignages seront ajoutés ici -->
-            </div>
-        </section>
+            <section id="temoignages" class="section-temoignages">
+                <h2>Voix de la Communauté</h2>
+                <div class="testimonials-container">
+                    <!-- Les témoignages seront ajoutés ici -->
+                </div>
+            </section>
 
-        <section id="aide" class="section-aide">
-        <section id="communaute" class="section-communaute">
-            <h2>Notre Communauté</h2>
-            <div class="aid-initiatives">
-                <!-- Les initiatives d'aide seront listées ici -->
-            </div>
-        </section>
+            <section id="aide" class="section-aide">
+                <section id="communaute" class="section-communaute">
+                    <h2>Notre Communauté</h2>
+                    <div class="aid-initiatives">
+                        <!-- Les initiatives d'aide seront listées ici -->
+                    </div>
+                </section>
 
-        <section class="section-galerie">
-            <h2>Galerie Multimédia</h2>
-            <div class="gallery-container">
-                <!-- La galerie sera générée dynamiquement -->
-            </div>
-        </section>
+                <section class="section-galerie">
+                    <h2>Galerie Multimédia</h2>
+                    <div class="gallery-container">
+                        <!-- La galerie sera générée dynamiquement -->
+                    </div>
+                </section>
     </main>
 
     <footer class="main-footer">
@@ -135,9 +187,11 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul class="contact-list">
-                        <li>📧 contact@situation-goma.org</li>
-                        <li>📞 +243 XX XXX XXX</li>
-                        <li>📍 Goma, Nord-Kivu, RDC</li>
+                        <a href="mailto: adresse@gmail.com">
+                            <li><i class="fas fa-envelope"></i> adresse@gmail.com</li>
+                        </a>
+                        <li><i class="fas fa-phone"></i> +243 XX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Goma, Nord-Kivu, RDC</li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -152,18 +206,19 @@
                 <div class="footer-section">
                     <h4>Suivez-nous</h4>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook">Facebook</a>
-                        <a href="#" aria-label="Twitter">Twitter</a>
-                        <a href="#" aria-label="Instagram">Instagram</a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 Goma Story - En partenariat avec Eco Group. Tous droits réservés.</p>
+                <p>© 2025 Goma Story - En partenariat avec Eco Group. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
     <script src="app.js"></script>
 </body>
+
 </html>
