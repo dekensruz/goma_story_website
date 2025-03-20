@@ -1,0 +1,350 @@
+/* Styles spécifiques pour la page Histoire */
+
+/* Variables globales */
+:root {
+    --header-height: 80px;
+    --primary-color: #1a365d;
+    --accent-color: #3182ce;
+    --text-color: #2d3748;
+    --border-radius: 8px;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Structure principale - collé à la navbar */
+.histoire-main {
+    margin-top: -1px; /* Élimine tout espace entre la navbar et la section */
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* La barre de progression est maintenant gérée par styles.css et app.js */
+
+/* Section héro */
+.histoire-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    background: url('assets/images/goma.jpg') center/cover no-repeat;
+    margin-bottom: 2rem;
+    margin-top: 0;
+}
+
+.histoire-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(26, 54, 93, 0.8) 0%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 1;
+}
+
+.histoire-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.histoire-hero-content h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.histoire-hero-content p {
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Structure du contenu principal */
+.histoire-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 3rem;
+    position: relative;
+}
+* Table des matières */
+.table-des-matieres {
+    position: sticky;
+    top: calc(var(--header-height) + 2rem);
+    align-self: start;
+    background-color: #f0f4f8;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10;
+    border-left: 4px solid var(--accent-color);
+    height: fit-content; /* Ajuste la hauteur en fonction du contenu */
+    max-height: calc(100vh - var(--header-height) - 4rem); /* Limite la hauteur */
+    overflow-y: hidden; /* Supprime la barre de défilement verticale */
+}
+
+.table-des-matieres:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.table-des-matieres h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    font-size: 1.5rem;
+}
+
+.table-des-matieres ul {
+    list-style: none;
+    padding: 0;
+}
+
+.table-des-matieres li {
+    margin-bottom: 1rem;
+}
+
+.table-des-matieres a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 0.8rem 1rem;
+    border-left: 3px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    background-color: rgba(247, 250, 252, 0.8);
+}
+
+.table-des-matieres a:hover,
+.table-des-matieres a.active {
+    color: white;
+    border-left-color: var(--accent-color);
+    transform: translateX(5px);
+    font-weight: 600;
+    background-color: var(--accent-color);
+    box-shadow: 0 2px 10px rgba(49, 130, 206, 0.3);
+}
+
+/* Conteneur des sections d'histoire */
+.histoire-sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 0; /* Suppression de l'espace avant la première section */
+}
+
+/* Sections d'histoire */
+.histoire-section {
+    margin-bottom: 4rem;
+    scroll-margin-top: calc(var(--header-height) + 2rem);
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    z-index: 5;
+}
+
+.histoire-section h2 {
+    color: var(--primary-color);
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-align: left;
+    border-bottom: 2px solid var(--accent-color);
+    padding-left: 0;
+    width: 100%;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.histoire-section h2::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background-color: var(--accent-color);
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+}
+
+/* Blocs de contenu */
+.histoire-content-block {
+    background-color: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+}
+
+.histoire-content-block:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.histoire-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.histoire-content-block:hover .histoire-image {
+    transform: scale(1.05);
+}
+
+.histoire-text {
+    padding: 2rem;
+}
+
+.histoire-text p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.histoire-text ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.histoire-text li {
+    margin-bottom: 0.5rem;
+}
+
+.histoire-text strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Animation pour les sections d'histoire lors du défilement */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Media queries pour la responsivité */
+@media (max-width: 992px) {
+    .histoire-content {
+        grid-template-columns: 1fr;
+    }
+
+    .table-des-matieres {
+        position: relative;
+        top: 0;
+        margin-bottom: 2rem;
+        width: 100%;
+        max-width: 100%;
+        background-color: #f0f4f8;
+        border-left: none;
+        border-bottom: 4px solid var(--accent-color);
+        padding: 1.5rem;
+    }
+    
+    .histoire-hero {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .histoire-section {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .histoire-hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .histoire-hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .histoire-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .histoire-image {
+        height: 300px;
+    }
+    
+    .histoire-text {
+        padding: 1.5rem;
+    }
+    
+    .histoire-text p, .histoire-text ul {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 576px) {
+    .histoire-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .histoire-hero-content p {
+        font-size: 1rem;
+    }
+    
+    .histoire-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .histoire-image {
+        height: 200px;
+    }
+    
+    .histoire-content {
+        padding: 0 1rem 2rem;
+    }
+    
+    .table-des-matieres {
+        padding: 1rem;
+    }
+    
+    .table-des-matieres h2 {
+        font-size: 1.3rem;
+    }
+    
+    .table-des-matieres a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}

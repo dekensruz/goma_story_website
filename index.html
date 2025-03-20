@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Goma Story - L'histoire d'une ville résiliente</title>
     <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -14,6 +14,9 @@
 </head>
 
 <body>
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
     <header class="main-header">
         <div class="header-content">
             <div class="logo-container">
@@ -36,9 +39,9 @@
             <div class="hero-content">
                 <h1>Goma Story</h1>
                 <p>Découvrez l'histoire riche et la résilience d'une ville extraordinaire au cœur de l'Afrique</p>
-                <a href="#hero_scroll" class="hero-button">Explorer notre histoire</a>
-            </div id="hero_scroll">
-            <div class="hero-scroll-indicator" ">
+                <a href="#carousel" class="hero-button">Explorer notre histoire</a>
+            </div>
+            <div class="hero-scroll-indicator" id="hero_scroll">
                 <span>Découvrir</span>
                 <i class="fas fa-chevron-down"></i>
             </div>
@@ -90,20 +93,26 @@
 
         <section id="actualites" class="section-actualites">
             <section id="histoire" class="section-histoire">
-                <h2>L'Histoire de Goma</h2>
+                <h2>L'Histoire de Goma <a href="histoire.html" class="voir-plus">(Voir l'histoire complète)</a></h2>
                 <div class="timeline-container">
+                    <a href="histoire.html#fondation" class="timeline-item-link">
                     <div class="timeline-item">
                         <h3>La ville de Goma</h3>
                         <p>Une ville dynamique au cœur de l'Afrique des Grands Lacs</p>
                     </div>
+                </a>
+                <a href="histoire.html#conflits" class="timeline-item-link">
                     <div class="timeline-item">
                         <h3>Périodes de conflit</h3>
                         <p>Les défis auxquels la ville a fait face</p>
                     </div>
+                </a>
+                <a href="histoire.html#eruptions" class="timeline-item-link">
                     <div class="timeline-item">
                         <h3>Défis naturels</h3>
                         <p>La résilience face aux éruptions volcaniques</p>
                     </div>
+                </a>
                 </div>
             </section>
 
@@ -111,9 +120,11 @@
                 <h2>Héritage Culturel</h2>
                 <div class="culture-grid">
                     <div class="culture-item">
-                        <img src="assets/images/dance.jpg" alt="Danse et Musique">
-                        <h3>Dance et Musique</h3>
-                        <p>La richesse des expressions culturelles à travers la musique et la danse.</p>
+                        <a href="danse_musique.html">
+                            <img src="assets/images/dance.jpg" alt="Danse et Musique">
+                            <h3>Dance et Musique</h3>
+                            <p>La richesse des expressions culturelles à travers la musique et la danse.</p>
+                        </a>
                     </div>
                     <div class="culture-item">
                         <img src="assets/images/coltan.jpg" alt="Ressources minières">
@@ -219,6 +230,7 @@
     </footer>
 
     <script src="app.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
